@@ -94,7 +94,8 @@ export const assets = {
     contact_img,
     razorpay_logo,
     stripe_logo,
-    cross_icon
+    cross_icon,
+   
 }
 
 export const products = [
@@ -112,8 +113,8 @@ export const products = [
     },
     {
         _id: "aaaab",
-        name: "Men Round Neck Pure Cotton T-shirt",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
+        name: "American Wirehair",
+        description: "The American Wirehair is a breed of domestic cat originating in upstate New York, which is characterized by its wiry fur and crinkly whiskers caused by a genetic mutation.",
         price: 200,
         image: [p_img2_1,p_img2_2,p_img2_3,p_img2_4],
         category: "Men",

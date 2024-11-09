@@ -8,22 +8,22 @@ import { faFacebookF, faTwitter, faLinkedinIn, faInstagram } from '@fortawesome/
 // Sample doctor data
 const doctors = [
   {
-    name: 'Dr. John Doe',
+    name: 'Dr. Danyal Zakir',
     image: 'https://storage.googleapis.com/a1aa/image/t54XnBpyrKIlEZJOYz7JFJ10ukwCecdBkqwJySsALofGT5rTA.jpg',
     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. WC, Inventore',
   },
   {
-    name: 'Dr. Jane Smith',
+    name: 'Dr. Mehwish Mushtaq',
     image: 'https://storage.googleapis.com/a1aa/image/zNkdUvsqxqLAAh0OUvFzfdaKUU9exuHi5F8sjzpUw4MET5rTA.jpg',
     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. WC, Inventore',
   },
   {
-    name: 'Dr. Emily Johnson',
+    name: 'Dr. Maha Ijaz',
     image: 'https://storage.googleapis.com/a1aa/image/zNkdUvsqxqLAAh0OUvFzfdaKUU9exuHi5F8sjzpUw4MET5rTA.jpg',
     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. WC, Inventore',
   },
   {
-    name: 'Dr. Sarah Brown',
+    name: 'Dr. Jawad',
     image: 'https://storage.googleapis.com/a1aa/image/zNkdUvsqxqLAAh0OUvFzfdaKUU9exuHi5F8sjzpUw4MET5rTA.jpg',
     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. WC, Inventore',
   },
