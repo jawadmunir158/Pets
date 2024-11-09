@@ -5,7 +5,7 @@
       "dest" :"/"
     },
     {
-      "src":"/test",
+      "src":"/Home.jsx",
       "dest":"/"
     }
   ]
