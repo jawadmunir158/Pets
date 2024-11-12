@@ -11,6 +11,7 @@ const Ai = () => {
   const [stream, setStream] = useState(null);
   const [loading, setLoading] = useState(false);
   const [history, setHistory] = useState([]);
+  const [darkMode, setDarkMode] = useState(false); // State for dark mode
 
   async function generateAnswer() {
     setLoading(true);
@@ -28,10 +29,10 @@ const Ai = () => {
       const rawAnswer = response.data.candidates[0].content.parts[0].text;
 
       // Remove unwanted characters (like '#' tags and any symbols) from the answer
-      const cleanAnswer = rawAnswer.replace(/[^a-zA-Z0-9\s]/g, '').trim(); // Removes all non-alphanumeric characters except spaces
+      const cleanAnswer = rawAnswer.replace(/[^a-zA-Z0-9\s]/g, '').trim();
       setAnswer(cleanAnswer);
       setHistory(prev => [...prev, { question, answer: cleanAnswer }]);
-      
+
       // Only speak if the user is actively using speech recognition
       if (speaking) {
         speakAnswer(cleanAnswer);
@@ -105,20 +106,26 @@ const Ai = () => {
         stream.getTracks().forEach(track => track.stop());
       }
     };
-    }, [stream]);
+  }, [stream]);
+
+  // Function to toggle dark mode
+  const toggleDarkMode = () => {
+    setDarkMode(prev => !prev);
+    document.body.classList.toggle('dark', !darkMode); // Toggle dark class on body
+  };
 
   return (
-    <div className="h-screen bg-gray-100 flex justify-center items-center">
-      <div className="max-w-2xl w-full bg-white rounded-lg shadow-lg p-6 flex flex-col space-y-4">
-        <h2 className="text-3xl font-semibold text-black text-center">AI Assistant</h2>
+    <div className={`h-screen flex justify-center items-center `}>
+      <div className={`max-w-2xl w-full rounded-lg shadow-lg p-6 flex flex-col space-y-4 ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}>
+        <h2 className="text-3xl font-semibold text-center">Assistant for Pets</h2>
 
-        <div className="flex flex-col space-y-4 h-80 overflow-y-auto bg-gray-50 p-4 rounded-lg">
+        <div className="flex flex-col space-y-4 h-80 overflow-y-auto bg-gray-50 p-4 rounded-lg dark:bg-gray-700">
           {history.map((item, index) => (
             <div key={index} className="flex flex-col space-y-2">
               <div className="self-end bg-blue-500 text-white p-3 rounded-lg max-w-xs">
                 {item.question}
               </div>
-              <div className="self-start bg-gray-300 text-gray-800 p-3 rounded-lg max-w-xs">
+              <div className="self-start bg-gray-300 text-gray-800 p-3 rounded-lg max-w-xs dark:bg-gray-600 dark:text-white">
                 {item.answer}
               </div>
             </div>
@@ -139,7 +146,7 @@ const Ai = () => {
               generateAnswer(); // Calls the function to generate the answer
             }
           }}
-          className="w-full p-4 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className={`w-full p-4 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${darkMode ? 'bg-gray-600 text-white border-gray-500' : ''}`}
           rows="3"
           placeholder="Ask about Pets..."
         />
@@ -147,7 +154,7 @@ const Ai = () => {
         <div className="flex justify-between items-center">
           <button
             onClick={generateAnswer}
-            className="w-full bg-black hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg"
+            className={`w-full bg-black hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
             disabled={loading} // Disable button while loading
           >
             {loading ? 'Submitting...' : 'Submit'}
@@ -159,6 +166,7 @@ const Ai = () => {
             onClick={speaking ? stopSpeaking : startSpeaking}
             className="cursor-pointer ml-4"
           />
+        
         </div>
       </div>
     </div>
